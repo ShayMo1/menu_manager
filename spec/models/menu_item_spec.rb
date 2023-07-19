@@ -10,6 +10,14 @@ RSpec.describe MenuItem, type: :model do
     expect(@menu_item.errors.messages).to include(name: ['can\'t be blank'])
   end
 
+  it 'should not allow duplicate names' do
+    menu = Menu.find_or_create_by(title: 'Test Menu')
+    dup_menu_item = MenuItem.create_with(price: 10.00, menu: menu).find_or_create_by(name: 'Test Item')
+    @menu_item.name = 'Test Item'
+    @menu_item.valid?
+    expect(@menu_item.errors.messages).to include(name: ['has already been taken'])
+  end
+
   it 'should require a numeric price' do
     expect(@menu_item.errors.messages).to include(price: ['is not a number'])
   end
