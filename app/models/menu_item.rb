@@ -1,6 +1,4 @@
 class MenuItem < ApplicationRecord
-  self.ignored_columns = [:menu_id]
-
   has_many :menu_items_menus
   has_many :menus, through: :menu_items_menus
 
