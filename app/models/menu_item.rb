@@ -1,7 +1,9 @@
 class MenuItem < ApplicationRecord
-  belongs_to :menu
+  self.ignored_columns = [:menu_id]
+
+  has_many :menu_items_menus
+  has_many :menus, through: :menu_items_menus
 
   validates :name, presence: true, uniqueness: true
-  validates :menu, presence: true
   validates :price, numericality: { greater_than_or_equal_to: 0.0 }
 end

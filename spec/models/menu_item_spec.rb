@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe MenuItem, type: :model do
   before(:all) do
-    @menu_item = MenuItem.new(name: nil, price: nil, menu: nil)
+    @menu_item = MenuItem.new(name: nil, price: nil)
     @menu_item.valid?
   end
 
@@ -11,8 +11,7 @@ RSpec.describe MenuItem, type: :model do
   end
 
   it 'should not allow duplicate names' do
-    menu = Menu.find_or_create_by(title: 'Test Menu')
-    dup_menu_item = MenuItem.create_with(price: 10.00, menu: menu).find_or_create_by(name: 'Test Item')
+    dup_menu_item = MenuItem.create_with(price: 10.00).find_or_create_by(name: 'Test Item')
     @menu_item.name = 'Test Item'
     @menu_item.valid?
     expect(@menu_item.errors.messages).to include(name: ['has already been taken'])
@@ -28,7 +27,12 @@ RSpec.describe MenuItem, type: :model do
     expect(@menu_item.errors.messages).to include(price: ['must be greater than or equal to 0.0'])
   end
 
-  it 'should require an extant menu' do
-    expect(@menu_item.errors.messages).to include(menu: ['must exist', 'can\'t be blank'])
+  it 'should be assignable to multiple menus' do
+    MenuItemsMenu.delete_all
+    menus = [Menu.find_or_create_by(title: 'Menu 1'), Menu.find_or_create_by(title: 'Menu 2')]
+    menu_item = MenuItem.create_with(price: 10.00).find_or_create_by(name: 'Test Item')
+    menu_item.menus << menus
+    expect(MenuItemsMenu.count).to eq(2)
+    expect(menu_item.menus.count).to eq(2)
   end
 end
