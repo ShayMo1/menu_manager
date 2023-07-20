@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_19_180654) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_20_154023) do
   create_table "menu_items", force: :cascade do |t|
     t.string "name"
     t.decimal "price", precision: 6, scale: 2
@@ -28,10 +28,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_19_180654) do
   end
 
   create_table "menus", force: :cascade do |t|
-    t.string "title", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "restaurant_id"
+    t.string "name"
     t.index ["restaurant_id"], name: "index_menus_on_restaurant_id"
   end
 

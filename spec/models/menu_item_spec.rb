@@ -29,7 +29,7 @@ RSpec.describe MenuItem, type: :model do
 
   it 'should be assignable to multiple menus' do
     MenuItemsMenu.delete_all
-    menus = [Menu.find_or_create_by(title: 'Menu 1'), Menu.find_or_create_by(title: 'Menu 2')]
+    menus = [Menu.find_or_create_by(name: 'Menu 1'), Menu.find_or_create_by(name: 'Menu 2')]
     menu_item = MenuItem.create_with(price: 10.00).find_or_create_by(name: 'Test Item')
     menu_item.menus << menus
     expect(MenuItemsMenu.count).to eq(2)
