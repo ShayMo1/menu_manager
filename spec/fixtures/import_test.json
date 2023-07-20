@@ -1,0 +1,62 @@
+{
+  "restaurants": [
+    {
+      "name": "Restaurant 1",
+      "menus": [
+        {
+          "name": "Menu 1",
+          "menu_items": [
+            {
+              "name": "Menu Item 1",
+              "price": 1.00
+            },
+            {
+              "name": "Menu Item 2",
+              "price": 2.00
+            }
+          ]
+        },
+        {
+          "name": "Menu 2",
+          "menu_items": [
+            {
+              "name": "Menu Item 1",
+              "price": 2.00
+            }
+          ]
+        },
+        {
+          "meal": "No Name",
+          "menu_items": [
+            {
+              "dish": "No Name",
+              "price": 0.00
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "brand": "No Name",
+      "menus": [
+        {
+          "name": "Menu 3"
+        }
+      ]
+    },
+    {
+      "name": "Restaurant 2",
+      "menus": [
+        {
+          "name": "Menu 4",
+          "dishes": [
+            {
+              "name": "Menu Item 2",
+              "price": 1.00
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
