@@ -10,10 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_20_154023) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_20_174040) do
   create_table "menu_items", force: :cascade do |t|
     t.string "name"
-    t.decimal "price", precision: 6, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -23,6 +22,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_20_154023) do
     t.integer "menu_item_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "price", precision: 6, scale: 2
     t.index ["menu_id"], name: "index_menu_items_menus_on_menu_id"
     t.index ["menu_item_id"], name: "index_menu_items_menus_on_menu_item_id"
   end
